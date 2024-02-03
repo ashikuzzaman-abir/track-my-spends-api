@@ -1,6 +1,6 @@
-GET http://localhost:5000/
+GET http://localhost:5000/echo
 
-###
+### users
 POST http://localhost:5000/api/users
 Content-Type: application/json
 
@@ -12,3 +12,16 @@ Content-Type: application/json
     "dateOfBirth": "1990-01-01",
     "profileImage": "https://www.google.com"
 }
+
+
+
+### roles
+POST http://localhost:5000/api/roles
+Content-Type: application/json
+
+{
+    "name": "user"
+}
+
+###
+GET http://localhost:5000/api/roles

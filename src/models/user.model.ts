@@ -54,6 +54,7 @@ const schema = new Schema<UserType>(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Role',
       required: true,
+      default: 'user',
     },
     dateOfBirth: {
       type: Date,
