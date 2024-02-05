@@ -1,3 +1,4 @@
 dist
 node_modules
 .env
+GCP_Service_Account.json

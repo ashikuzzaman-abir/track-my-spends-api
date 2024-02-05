@@ -1,5 +1,6 @@
-import express from 'express';
 import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
@@ -8,9 +9,8 @@ import connectDB from './db';
 
 import userRoutes from './routes/user.route';
 import roleRoutes from './routes/role.route';
+import uploadRoutes from './routes/upload.route';
 
-
-dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -31,6 +31,7 @@ app.get('/echo', (req, res) => {
 // routes
 app.use('/api/users', userRoutes);
 app.use('/api/roles', roleRoutes);
+app.use('/api/uploads', uploadRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
