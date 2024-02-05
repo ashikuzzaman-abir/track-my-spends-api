@@ -7,7 +7,6 @@ const uploadFile = (req: Request, res: Response) => {
     // handle the file upload
     if (!req.file) return res.status(400).json({ message: 'No file uploaded' });
     const uploadedFile = uploader(req.file);
-    // return res.status(200).json({ blob });
     if (!uploadFile)
       return res.status(500).json({ message: 'File upload failed' });
     res.status(200).json({
