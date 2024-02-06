@@ -7,9 +7,14 @@ import helmet from 'helmet';
 import compression from 'compression';
 import connectDB from './db';
 
+//routes
 import userRoutes from './routes/user.route';
 import roleRoutes from './routes/role.route';
 import uploadRoutes from './routes/upload.route';
+import categoryRoutes from './routes/category.route';
+import expenseRoutes from './routes/expense.route';
+import authRoutes from './routes/auth.route';
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -29,9 +34,12 @@ app.get('/echo', (req, res) => {
 });
 
 // routes
+app.use("/api/auth", authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/roles', roleRoutes);
 app.use('/api/uploads', uploadRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/expenses', expenseRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -13,7 +13,7 @@ const schema = new mongoose.Schema<CategoryType>(
       type: String,
       trim: true,
       required: true,
-      unique: true,
+      // unique: true,
     },
 
     description: {

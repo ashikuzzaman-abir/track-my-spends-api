@@ -33,11 +33,15 @@ const createAUser = async (req: Request, res: Response) => {
 
     req.body.role = req.body.role || '65be6691caff8d8cbc1d3d91';
     const user = new User(req.body);
-    const savedUser = await user.save();
+    const savedUser: any = await user.save();
+    const { password: pass, ...userWithoutPassword } = savedUser._doc;
     if (!savedUser)
       return res.status(400).json({ message: 'User could not be created' });
 
-    return res.status(201).json(savedUser);
+    return res.status(201).json({
+      message: 'user has been created',
+      doc: { ...userWithoutPassword },
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -63,7 +67,7 @@ const validate = (data: BodyType): Joi.ValidationResult => {
     isActive: Joi.boolean().messages({
       'any.boolean': 'Active must be a boolean',
     }),
-    role: Joi.string().required().messages({
+    role: Joi.string().messages({
       'any.required': 'Role is required',
     }),
     dateOfBirth: Joi.date().messages({
